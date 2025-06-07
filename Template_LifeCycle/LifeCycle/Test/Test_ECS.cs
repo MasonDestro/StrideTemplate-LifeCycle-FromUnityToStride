@@ -1,20 +1,38 @@
-﻿using System.Collections.Generic;
-using Stride.Input;
+﻿using Stride.Core;
 using Stride.Engine;
+using Stride.Input;
+using System.Collections.Generic;
+using System.ComponentModel;
+
 
 namespace Template_LifeCycle.LifeCycle
 {
-    public class Test : SyncScript
+    public class Test_ECS : SyncScript
     {
+        [DataMember(-10)]
+        [DefaultValue(true)]
+        public virtual bool Enabled { get; set; } = true;
+
+
         List<Entity> enttList;
 
         public override void Start()
         {
+            if (!Enabled) return;
+
+            Log.ActivateLog(Stride.Core.Diagnostics.LogMessageType.Verbose);
+            Log.Verbose("Test ECS");
+
+
             enttList = new();
         }
 
         public override void Update()
         {
+            if (!Enabled) return;
+
+
+
             if (Input.HasKeyboard)
             {
                 if (Input.IsKeyReleased(Keys.A))
@@ -26,7 +44,7 @@ namespace Template_LifeCycle.LifeCycle
                     SceneSystem.SceneInstance.RootScene.Entities.Add(enttList[^1]);
                     MyActivableComponent com = new();
                     enttList[^1].Add(com);
-                    com.isEnableChanged = true;
+                    com.IsEnableChanged = true;
 
 
 
@@ -37,7 +55,7 @@ namespace Template_LifeCycle.LifeCycle
                     //Entity.Scene.Entities.Add(enttList[^1]);    //  Alternative add entity
                     //var com = enttList[^1].GetOrCreate<MyActivableComponent>();
                     //com.Enabled = false;
-                    //com.isDisabledOnAwake = true;
+                    //com.IsDisabledOnAwake = true;
                 }
                 if (Input.IsKeyReleased(Keys.D))
                 {
@@ -58,7 +76,7 @@ namespace Template_LifeCycle.LifeCycle
                     {
                         var com = entt.Get<MyActivableComponent>();
                         com.Enabled = !com.Enabled;
-                        com.isEnableChanged = true;
+                        com.IsEnableChanged = true;
                     }
                 }
             }

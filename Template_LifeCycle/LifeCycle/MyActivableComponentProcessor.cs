@@ -12,7 +12,7 @@ namespace Template_LifeCycle.LifeCycle
         //  MonoBehaviour Awake()
         protected override void OnEntityComponentAdding(Entity entity, [NotNull] MyActivableComponent component, [NotNull] MyActivableComponent data)
         {
-            data.isStart = true;
+            data.IsStart = true;
             Awake(data);
         }
 
@@ -31,9 +31,9 @@ namespace Template_LifeCycle.LifeCycle
         {
             foreach (var data in ComponentDatas.Values)
             {
-                if (data.isEnableChanged)
+                if (data.IsEnableChanged)
                 {
-                    data.isEnableChanged = false;
+                    data.IsEnableChanged = false;
 
                     //  MonoBehaviour OnEnable()
                     if (data.Enabled)
@@ -51,9 +51,9 @@ namespace Template_LifeCycle.LifeCycle
                 if (!data.Enabled)
                 {
                     //  in Unity, add a disabled component will call Awake() then OnEnable() then OnDisable()
-                    if (data.isDisabledOnAwake)
+                    if (data.IsDisabledOnAwake)
                     {
-                        data.isDisabledOnAwake = false;
+                        data.IsDisabledOnAwake = false;
                         OnEnable(data);
                         OnDisable(data);
                     }
@@ -63,9 +63,9 @@ namespace Template_LifeCycle.LifeCycle
 
 
                 //  MonoBehaviour Start()
-                if (data.isStart)
+                if (data.IsStart)
                 {
-                    data.isStart = false;
+                    data.IsStart = false;
                     Start(data);
                 }
 

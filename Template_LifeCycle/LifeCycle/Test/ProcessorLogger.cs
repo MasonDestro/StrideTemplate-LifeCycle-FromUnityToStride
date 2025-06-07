@@ -25,7 +25,6 @@ namespace Template_LifeCycle.LifeCycle
             messageList = new();
 
             Log.ActivateLog(Stride.Core.Diagnostics.LogMessageType.Debug);
-            Log.Verbose("Test");
         }
 
         public override void Update()
