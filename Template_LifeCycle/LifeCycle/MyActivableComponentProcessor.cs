@@ -1,6 +1,7 @@
 ﻿using Stride.Engine;
 using Stride.Games;
 using Stride.Core.Annotations;
+using Stride.Rendering;
 
 namespace Template_LifeCycle.LifeCycle
 {
@@ -74,6 +75,18 @@ namespace Template_LifeCycle.LifeCycle
             }
         }
 
+        //  MonoBehaviour LateUpdate()
+        public override void Draw(RenderContext context)
+        {
+            foreach (var data in ComponentDatas.Values)
+            {
+                if (data.Enabled)
+                {
+                    LateUpdate(data);
+                }
+            }
+        }
+
         #endregion
 
 
@@ -92,6 +105,11 @@ namespace Template_LifeCycle.LifeCycle
         private static void Update(MyActivableComponent component)
         {
             ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Debug, "Update"));
+        }
+
+        private static void LateUpdate(MyActivableComponent component)
+        {
+            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Debug, "LateUpdate"));
         }
 
         private static void OnDestroy(MyActivableComponent component)
