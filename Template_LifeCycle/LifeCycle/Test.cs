@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Stride.Core.Mathematics;
+﻿using System.Collections.Generic;
 using Stride.Input;
 using Stride.Engine;
 
@@ -11,15 +6,11 @@ namespace Template_LifeCycle.LifeCycle
 {
     public class Test : SyncScript
     {
-        Entity testEntity;
-        MyActivableComponent testCom;
+        List<Entity> enttList;
 
         public override void Start()
         {
-            testEntity = new();
-            SceneSystem.SceneInstance.RootScene.Entities.Add(testEntity);
-
-            Log.Verbose("Test");
+            enttList = new();
         }
 
         public override void Update()
@@ -28,33 +19,43 @@ namespace Template_LifeCycle.LifeCycle
             {
                 if (Input.IsKeyReleased(Keys.A))
                 {
-                    if (testCom == null)
-                    {
-                        //  Awake() -> OnEnable() -> Start()
-                        testCom = testEntity.GetOrCreate<MyActivableComponent>();
-                        testCom.isEnableChanged = true;
-                        
+                    //  add enabled component
+                    //  Awake() -> OnEnable() -> Start()
+                    enttList.Add(new Entity());
+                    SceneSystem.SceneInstance.RootScene.Entities.Add(enttList[^1]);
+                    MyActivableComponent com = new();
+                    enttList[^1].Add(com);
+                    com.isEnableChanged = true;
 
-                        //  Awake() only
-                        //testCom = testEntity.GetOrCreate<MyActivableComponent>();
-                        //testCom.Enabled = false;
-                    }
+
+                    //  add disabled component
+                    //  Awake() -> OnEnable() -> OnDisable()
+                    //enttList.Add(new Entity());
+                    //Entity.Scene.Entities.Add(enttList[^1]);    //  Alternative add entity
+                    //var com = enttList[^1].GetOrCreate<MyActivableComponent>();
+                    //com.Enabled = false;
+                    //com.isDisabledOnAwake = true;
                 }
                 if (Input.IsKeyReleased(Keys.D))
                 {
                     //  OnDestroy()
                     //  OnDisable() if component.Enabled == true
-                    testEntity.Remove(testCom);
-                    testCom = null;
+                    if (enttList.Count > 0)
+                    {
+                        SceneSystem.SceneInstance.RootScene.Entities.Remove(enttList[^1]);
+                        //Entity.Scene.Entities.Remove(enttList[^1]);     //  Alternative remove entity
+                        enttList.RemoveAt(enttList.Count - 1);
+                    }
                 }
                 if (Input.IsKeyReleased(Keys.E))
                 {
-                    if (testCom != null)
+                    //  OnEnable() or OnDisable()
+                    //  Start() if OnEnable() first time
+                    foreach (Entity entt in enttList)
                     {
-                        //  OnEnable() or OnDisable()
-                        //  Start() if OnEnable() first time
-                        testCom.Enabled = !testCom.Enabled;
-                        testCom.isEnableChanged = true;
+                        var com = entt.Get<MyActivableComponent>();
+                        com.Enabled = !com.Enabled;
+                        com.isEnableChanged = true;
                     }
                 }
             }

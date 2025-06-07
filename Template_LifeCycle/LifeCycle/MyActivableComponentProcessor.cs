@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Stride.Core.Mathematics;
-using Stride.Input;
-using Stride.Engine;
+﻿using Stride.Engine;
 using Stride.Games;
 using Stride.Core.Annotations;
 
@@ -13,12 +6,13 @@ namespace Template_LifeCycle.LifeCycle
 {
     public class MyActivableComponentProcessor : EntityProcessor<MyActivableComponent>
     {
+        #region Stride ECS
+
         //  MonoBehaviour Awake()
         protected override void OnEntityComponentAdding(Entity entity, [NotNull] MyActivableComponent component, [NotNull] MyActivableComponent data)
         {
             data.isStart = true;
-
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Info, "Awake"));
+            Awake(data);
         }
 
         //  MonoBehaviour OnDestroy()
@@ -26,12 +20,10 @@ namespace Template_LifeCycle.LifeCycle
         {
             if (data.Enabled)
             {
-
-                ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Warning, "OnDisable"));
+                OnDisable(data);
             }
 
-
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Fatal, "OnDestroy"));
+            OnDestroy(data);
         }
 
         public override void Update(GameTime time)
@@ -45,20 +37,26 @@ namespace Template_LifeCycle.LifeCycle
                     //  MonoBehaviour OnEnable()
                     if (data.Enabled)
                     {
-
-                        ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Warning, "OnEnable"));
+                        OnEnable(data);
                     }
                     //  MonoBehaviour OnDisable()
                     else
                     {
-
-                        ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Warning, "OnDisable"));
+                        OnDisable(data);
                     }
                 }
 
 
                 if (!data.Enabled)
                 {
+                    //  in Unity, add a disabled component will call Awake() then OnEnable() then OnDisable()
+                    if (data.isDisabledOnAwake)
+                    {
+                        data.isDisabledOnAwake = false;
+                        OnEnable(data);
+                        OnDisable(data);
+                    }
+
                     continue;
                 }
 
@@ -67,16 +65,50 @@ namespace Template_LifeCycle.LifeCycle
                 if (data.isStart)
                 {
                     data.isStart = false;
-
-                    ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Verbose, "Start"));
+                    Start(data);
                 }
 
 
                 //  MonoBehaviour Update()
-
-                ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Debug, "Update"));
-
+                Update(data);
             }
         }
+
+        #endregion
+
+
+        #region Unity MonoBehaviour Simulation
+
+        private static void Awake(MyActivableComponent component)
+        {
+            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Info, "Awake"));
+        }
+
+        private static void Start(MyActivableComponent component)
+        {
+            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Verbose, "Start"));
+        }
+
+        private static void Update(MyActivableComponent component)
+        {
+            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Debug, "Update"));
+        }
+
+        private static void OnDestroy(MyActivableComponent component)
+        {
+            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Fatal, "OnDestroy"));
+        }
+
+        private static void OnEnable(MyActivableComponent component)
+        {
+            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Warning, "OnEnable"));
+        }
+
+        private static void OnDisable(MyActivableComponent component)
+        {
+            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Warning, "OnDisable"));
+        }
+
+        #endregion
     }
 }
