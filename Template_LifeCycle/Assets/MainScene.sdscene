@@ -1,0 +1,115 @@
+!SceneAsset
+Id: e807e5b4-a6f6-456d-b61c-ef0ac041f9bc
+SerializedVersion: {Stride: 3.1.0.1}
+Tags: []
+ChildrenIds: []
+Offset: {X: 0.0, Y: 0.0, Z: 0.0}
+Hierarchy:
+    RootParts:
+        - ref!! a01cfbd2-39eb-422d-b4aa-1c1908e86b56
+        - ref!! 34f87896-9c50-4412-a1dd-8e412252eeb5
+        - ref!! 2e68d73e-95c1-45c1-99f8-a0d11ddef559
+        - ref!! 89b0e3c8-7f7b-4b6f-9eec-3b8bca740324
+        - ref!! 7cc27859-5896-4dd0-8a19-ed3ac470fea8
+        - ref!! 3661ad1d-e166-4592-9995-1045b033931a
+    Parts:
+        -   Entity:
+                Id: 2e68d73e-95c1-45c1-99f8-a0d11ddef559
+                Name: Skybox
+                Components:
+                    fdc89bcb76a4875c0b3f831e3957d08c: !TransformComponent
+                        Id: 00bf55ae-ad7d-4d27-a44d-83037d7b1542
+                        Position: {X: 0.0, Y: 2.0, Z: -2.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    13dfb16406690323b1bd93a2a065da25: !BackgroundComponent
+                        Id: ebda18c7-b80d-4c6c-90f2-c995c6204f35
+                        Texture: 1d2036b9-1fec-41ea-8ec0-a83f78614bbe:Skybox texture
+                    957efadf27222d6c1ce8aa31aaf277af: !LightComponent
+                        Id: eef01ca7-1503-4813-af21-a956513d3efa
+                        Type: !LightSkybox
+                            Skybox: c96b0f65-5e4f-4efe-9132-35ca35081abb:Skybox
+        -   Entity:
+                Id: 34f87896-9c50-4412-a1dd-8e412252eeb5
+                Name: Directional light
+                Components:
+                    e3e6221d1c2370d8212188fc50336b15: !TransformComponent
+                        Id: 4d42c0be-ca07-4ccc-96cd-53b10572459d
+                        Position: {X: 0.0, Y: 2.0, Z: 0.0}
+                        Rotation: {X: 1.131334E-08, Y: -0.9659258, Z: -0.25881904, W: -4.222196E-08}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    bb2b7faaa959625a342002e0d592fa04: !LightComponent
+                        Id: 562bf64d-76c3-4fe3-9f9e-7a6367b46bc9
+                        Type: !LightDirectional
+                            Color: !ColorRgbProvider
+                                Value: {R: 1.0, G: 1.0, B: 1.0}
+                            Shadow:
+                                Enabled: true
+                                Filter: !LightShadowMapFilterTypePcf
+                                    FilterSize: Filter5x5
+                                Size: Large
+                                DepthRange: {}
+                                PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
+                                ComputeTransmittance: false
+                                BiasParameters: {}
+                        Intensity: 20.0
+        -   Entity:
+                Id: 3661ad1d-e166-4592-9995-1045b033931a
+                Name: Test
+                Components:
+                    0e8218d53ae3a50f2bf4e02feae25eb3: !TransformComponent
+                        Id: 8dea5db4-2390-4e0d-947c-cb032b910a4c
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    7253ff13e1ad37d40a1caaf8248f421a: !Template_LifeCycle.LifeCycle.ProcessorLogger,Template_LifeCycle
+                        Id: c3bf9e1c-2bc4-4076-9683-82d0874d07db
+                    c5161f2d9646e142bc0c9a7e5cecad65: !Template_LifeCycle.LifeCycle.Test,Template_LifeCycle
+                        Id: d0a883a2-b0b2-4188-9b0d-b2d0ff74c217
+                        Priority: 1
+        -   Entity:
+                Id: 7cc27859-5896-4dd0-8a19-ed3ac470fea8
+                Name: Sphere
+                Components:
+                    678e58e1c575d0414982dcddad90142b: !TransformComponent
+                        Id: d99ae3d1-7932-4e53-823a-96504d392728
+                        Position: {X: 0.0, Y: 0.5, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    5f7b09d49fe13fc0f37613257c7145c2: !ModelComponent
+                        Id: 809a7dfe-b318-40bd-9fce-68aaa33cc790
+                        Model: 18c1a32f-9608-4f3f-84da-6eff259f58d9:Sphere
+                        Materials: {}
+        -   Entity:
+                Id: 89b0e3c8-7f7b-4b6f-9eec-3b8bca740324
+                Name: Ground
+                Components:
+                    26e71c91a46716cd812522f55a346062: !TransformComponent
+                        Id: d6da7b71-ea06-416d-a1ad-484314778f63
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    7b36f29ec1dea79ad8425e6bb705ee67: !ModelComponent
+                        Id: 68c282e3-88a7-41cf-b926-b72eb216b753
+                        Model: fab2c91a-8837-4842-99a0-3ee168cd3681:Ground
+                        Materials: {}
+        -   Entity:
+                Id: a01cfbd2-39eb-422d-b4aa-1c1908e86b56
+                Name: Camera
+                Components:
+                    53213581f04b5abf9d4f114b8e0be0bb: !TransformComponent
+                        Id: 95c37da7-e6ec-4e24-93c4-98a5b78eaa50
+                        Position: {X: 2.6, Y: 0.6, Z: -1.0}
+                        Rotation: {X: 0.0, Y: 0.82903755, Z: 0.0, W: 0.5591929}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    c5f4d9c0249bda956c3657a937750dab: !CameraComponent
+                        Id: acfbcbdd-dbf7-4107-ae2d-6f75138abbb0
+                        Name: null
+                        Projection: Perspective
+                        Slot: 336c8f66-e5e6-4e0c-9a42-97e1b1b783d9

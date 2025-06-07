@@ -9,13 +9,10 @@ Meta:
 AssetFolders:
     -   Path: !dir Assets
     -   Path: !dir Effects
-    -   Path: !dir ../../../Stride Projects/Template-LifeCycle/Template_LifeCycle/Assets
+    -   Path: !dir ../../Template_LifeCycle/Template_LifeCycle/Assets
     -   Path: !dir Assets
-    -   Path: !dir ../../../Stride Projects/Template-LifeCycle/Template_LifeCycle/Assets
-    -   Path: !dir ../../../Stride Projects/Template-LifeCycle/Template_LifeCycle/Assets
     -   Path: !dir Assets
-    -   Path: !dir E:/Projects/Stride Projects/Template-LifeCycle/Template_LifeCycle/Assets
-    -   Path: !dir E:/Projects/GitHub Repositories/StrideTemplate-LifeCycle-FromUnityToStride/Template_LifeCycle/Assets
+    -   Path: !dir E:/Projects/GitHub Repositories/StrideTemplate-SimulateMonoBehaviourLifeCycle/Template_LifeCycle/Assets
 ResourceFolders:
     - !dir Resources
 OutputGroupDirectories: {}
