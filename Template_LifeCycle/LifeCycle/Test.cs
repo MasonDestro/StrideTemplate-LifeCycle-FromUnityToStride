@@ -21,6 +21,7 @@ namespace Template_LifeCycle.LifeCycle
                 {
                     //  add enabled component
                     //  Awake() -> OnEnable() -> Start()
+
                     enttList.Add(new Entity());
                     SceneSystem.SceneInstance.RootScene.Entities.Add(enttList[^1]);
                     MyActivableComponent com = new();
@@ -28,8 +29,10 @@ namespace Template_LifeCycle.LifeCycle
                     com.isEnableChanged = true;
 
 
+
                     //  add disabled component
                     //  Awake() -> OnEnable() -> OnDisable()
+
                     //enttList.Add(new Entity());
                     //Entity.Scene.Entities.Add(enttList[^1]);    //  Alternative add entity
                     //var com = enttList[^1].GetOrCreate<MyActivableComponent>();
