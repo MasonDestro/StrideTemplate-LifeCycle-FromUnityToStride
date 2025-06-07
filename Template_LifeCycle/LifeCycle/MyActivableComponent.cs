@@ -8,7 +8,7 @@ namespace Template_LifeCycle.LifeCycle
     [DefaultEntityComponentProcessor(typeof(MyActivableComponentProcessor))]
     public class MyActivableComponent : ActivableEntityComponent
     {
-        #region States of Unit/MonoBehaviour style Life Cycle
+        #region Helper States of Unity MonoBehaviour style Life Cycle
 
         public bool isDisabledOnAwake;
         public bool isStart;

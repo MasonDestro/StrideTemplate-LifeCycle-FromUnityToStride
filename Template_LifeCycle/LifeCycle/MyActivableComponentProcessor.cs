@@ -71,7 +71,7 @@ namespace Template_LifeCycle.LifeCycle
 
 
                 //  MonoBehaviour Update()
-                Update(data);
+                Update(data, time);
             }
         }
 
@@ -102,7 +102,7 @@ namespace Template_LifeCycle.LifeCycle
             ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Verbose, "Start"));
         }
 
-        private static void Update(MyActivableComponent component)
+        private static void Update(MyActivableComponent component, GameTime time)
         {
             ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Debug, "Update"));
         }
