@@ -44,10 +44,7 @@ namespace Template_LifeCycle.LifeCycle
                     //  add enabled component
                     //  Awake() -> OnEnable() -> Start()
 
-                    MonoBehaviourScriptSample com = new()
-                    {
-                        IsEnableChanged = true
-                    };
+                    MonoBehaviourScriptSample com = new();
                     entt.Add(com);
                     comList.Add(com);
 
@@ -56,11 +53,7 @@ namespace Template_LifeCycle.LifeCycle
                     //  add disabled component
                     //  Awake() -> OnEnable() -> OnDisable()
 
-                    MonoBehaviourScript com = new()
-                    {
-                        Enabled = false,
-                        IsDisabledOnAwake = true
-                    };
+                    MonoBehaviourScriptSample com = new() { Enabled = false };
                     entt.Add(com);
                     comList.Add(com);
 
@@ -83,7 +76,6 @@ namespace Template_LifeCycle.LifeCycle
                     foreach (var com in comList)
                     {
                         com.Enabled = !com.Enabled;
-                        com.IsEnableChanged = true;
                     }
                 }
             }

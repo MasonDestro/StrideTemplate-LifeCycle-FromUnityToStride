@@ -13,6 +13,8 @@ namespace Template_LifeCycle.LifeCycle
         protected override void OnEntityComponentAdding(Entity entity, [NotNull] MyActivableComponent component, [NotNull] MyActivableComponent data)
         {
             data.IsStart = true;
+            data.IsEnableChanged = data.Enabled;
+            data.IsDisabledOnAwake = !data.Enabled;
             Awake(data);
         }
 

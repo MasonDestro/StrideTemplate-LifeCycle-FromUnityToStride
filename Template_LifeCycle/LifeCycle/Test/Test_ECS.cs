@@ -44,10 +44,7 @@ namespace Template_LifeCycle.LifeCycle
                     //  add enabled component
                     //  Awake() -> OnEnable() -> Start()
 
-                    MyActivableComponent com = new()
-                    {
-                        IsEnableChanged = true
-                    };
+                    MyActivableComponent com = new();
                     entt.Add(com);
                     comList.Add(com);
 
@@ -56,11 +53,7 @@ namespace Template_LifeCycle.LifeCycle
                     //  add disabled component
                     //  Awake() -> OnEnable() -> OnDisable()
 
-                    //MyActivableComponent com = new()
-                    //{
-                    //    Enabled = false,
-                    //    IsDisabledOnAwake = true
-                    //};
+                    //MyActivableComponent com = new() { Enabled = false };
                     //entt.Add(com);
                     //comList.Add(com);
                 }
@@ -81,7 +74,6 @@ namespace Template_LifeCycle.LifeCycle
                     foreach (var com in comList)
                     {
                         com.Enabled = !com.Enabled;
-                        com.IsEnableChanged = true;
                     }
                 }
             }

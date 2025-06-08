@@ -20,6 +20,14 @@ namespace Template_LifeCycle.LifeCycle
 
         #endregion
 
-
+        public override bool Enabled
+        {
+            get => base.Enabled;
+            set
+            {
+                IsEnableChanged = base.Enabled ^ value;
+                base.Enabled = value;
+            }
+        }
     }
 }

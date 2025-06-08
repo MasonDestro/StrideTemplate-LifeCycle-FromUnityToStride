@@ -43,14 +43,18 @@ namespace Template_LifeCycle.LifeCycle
             public void SystemRemoved() { }
 
 
+            //  MonoBehaviour Awake()
             void IProcessor.OnComponentAdded(IMonoBehaviour item)
             {
                 Components.Add(item);
 
                 item.IsStart = true;
+                item.IsEnableChanged = item.Enabled;
+                item.IsDisabledOnAwake = !item.Enabled;
                 item.Awake();
             }
 
+            //  MonoBehaviour OnDestroy()
             void IProcessor.OnComponentRemoved(IMonoBehaviour item)
             {
                 Components.Remove(item);
@@ -110,6 +114,7 @@ namespace Template_LifeCycle.LifeCycle
                 }
             }
 
+            //  MonoBehaviour LateUpdate()
             public void Draw(RenderContext context)
             {
                 foreach (var item in Components)
