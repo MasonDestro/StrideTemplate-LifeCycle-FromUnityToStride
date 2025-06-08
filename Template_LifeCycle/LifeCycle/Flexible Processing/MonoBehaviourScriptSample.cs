@@ -4,9 +4,10 @@ using Stride.Games;
 
 namespace Template_LifeCycle.LifeCycle
 {
-    [DataContract]
+    [DataContract("MonoBehaviour", Inherited = true)]
+    [ComponentCategory("MonoBehaviour")]
     [AllowMultipleComponents]
-    public class MonoBehaviourScriptSample : EntityComponent, IMonoBehaviour
+    public abstract class MonoBehaviourScriptSample : EntityComponent, IMonoBehaviour
     {
         #region Helper States of Unity MonoBehaviour style Life Cycle
 
@@ -16,10 +17,22 @@ namespace Template_LifeCycle.LifeCycle
         bool IMonoBehaviour.IsEnableChanged { get => _isEnableChanged; set => _isEnableChanged = value; }
 
         #endregion
+        #region Unity MonoBehaviour Simulation
+
+        void IMonoBehaviour.Awake() { Awake(); }
+        void IMonoBehaviour.Start() { Start(); }
+        void IMonoBehaviour.Update(GameTime gameTime) { Update(gameTime); }
+        void IMonoBehaviour.LateUpdate() { LateUpdate(); }
+        void IMonoBehaviour.OnDestroy() { OnDestroy(); }
+        void IMonoBehaviour.OnEnable() { OnEnable(); }
+        void IMonoBehaviour.OnDisable() { OnDisable(); }
+
+        #endregion
+
 
 
         bool _enabled = true;
-        //[DataMember(-10)]
+        [DataMember(-10)]
         public bool Enabled
         {
             get => _enabled;
@@ -31,44 +44,12 @@ namespace Template_LifeCycle.LifeCycle
         }
 
 
-
-        #region Unity MonoBehaviour Simulation
-
-        void IMonoBehaviour.Awake()
-        {
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Info, $"Awake"));
-        }
-
-        void IMonoBehaviour.Start()
-        {
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Verbose, "Start"));
-        }
-
-        void IMonoBehaviour.Update(GameTime gameTime)
-        {
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Debug, "Update"));
-        }
-
-        void IMonoBehaviour.LateUpdate()
-        {
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Debug, "LateUpdate"));
-        }
-
-        void IMonoBehaviour.OnDestroy()
-        {
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Fatal, "OnDestroy"));
-        }
-
-        void IMonoBehaviour.OnEnable()
-        {
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Warning, "OnEnable"));
-        }
-
-        void IMonoBehaviour.OnDisable()
-        {
-            ProcessorLogger.Instance.LogMessage((ProcessorLogger.LogType.Warning, "OnDisable"));
-        }
-
-        #endregion
+        protected virtual void Awake() { }
+        protected virtual void Start() { }
+        protected virtual void Update(GameTime gameTime) { }
+        protected virtual void LateUpdate() { }
+        protected virtual void OnDestroy() { }
+        protected virtual void OnEnable() { }
+        protected virtual void OnDisable() { }
     }
 }

@@ -12,6 +12,7 @@ Hierarchy:
         - ref!! 89b0e3c8-7f7b-4b6f-9eec-3b8bca740324
         - ref!! 7cc27859-5896-4dd0-8a19-ed3ac470fea8
         - ref!! ea5d1761-8572-4d91-a2c5-e83a2e63569f
+        - ref!! ad0c1fda-42fd-4a2e-868f-c95834d8e995
     Parts:
         -   Entity:
                 Id: 2e68d73e-95c1-45c1-99f8-a0d11ddef559
@@ -98,6 +99,22 @@ Hierarchy:
                         Name: null
                         Projection: Perspective
                         Slot: 336c8f66-e5e6-4e0c-9a42-97e1b1b783d9
+        -   Entity:
+                Id: ad0c1fda-42fd-4a2e-868f-c95834d8e995
+                Name: Entity OtherMonoBehaviour
+                Components:
+                    e142bb25e69069aafd596d8239727652: !TransformComponent
+                        Id: f52c5515-498a-48de-acdf-59674bfb1777
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    8a48c0d0f27c7d0370bbb8b8cb8a23ae: !Template_LifeCycle.LifeCycle.OtherMonoBehaviourScript,Template_LifeCycle
+                        Id: e1add9fd-8aeb-4abb-a379-414f3b05a64e
+                        Enabled: false
+                    6aad1fcce7da3bb111168babe26d34c4: !Template_LifeCycle.LifeCycle.OtherMonoBehaviourScript,Template_LifeCycle
+                        Id: f165c62e-8c71-4fd0-b755-5b5d6530cdfc
+                        Enabled: false
         -   Entity:
                 Id: ea5d1761-8572-4d91-a2c5-e83a2e63569f
                 Name: Test

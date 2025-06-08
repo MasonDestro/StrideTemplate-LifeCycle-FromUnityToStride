@@ -13,7 +13,7 @@ namespace Template_LifeCycle.LifeCycle
         public virtual bool Enabled { get; set; } = true;
 
         Entity entt;
-        List<MonoBehaviourScriptSample> comList;
+        List<MonoBehaviourScript> comList;
 
         public override void Start()
         {
@@ -44,7 +44,7 @@ namespace Template_LifeCycle.LifeCycle
                     //  add enabled component
                     //  Awake() -> OnEnable() -> Start()
 
-                    MonoBehaviourScriptSample com = new();
+                    MonoBehaviourScript com = new();
                     entt.Add(com);
                     comList.Add(com);
 

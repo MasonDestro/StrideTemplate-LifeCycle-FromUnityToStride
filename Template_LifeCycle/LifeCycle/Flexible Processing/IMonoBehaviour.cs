@@ -8,12 +8,16 @@ namespace Template_LifeCycle.LifeCycle
 {
     public interface IMonoBehaviour : IComponent<IMonoBehaviour.Processor, IMonoBehaviour>
     {
+        #region Helper States of Unity MonoBehaviour style Life Cycle
+
         [DataMemberIgnore]
         bool IsDisabledOnAwake { get; set; }
         [DataMemberIgnore]
         bool IsEnableChanged { get; set; }
         [DataMemberIgnore]
         bool IsStart { get; set; }
+
+        #endregion
 
 
         [DataMember(-10)]
