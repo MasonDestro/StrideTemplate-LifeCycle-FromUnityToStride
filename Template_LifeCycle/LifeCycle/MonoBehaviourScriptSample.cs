@@ -4,7 +4,7 @@ using Stride.Games;
 namespace Template_LifeCycle.LifeCycle
 {
     [AllowMultipleComponents]
-    public class MonoBehaviourScript : StartupScript, IMonoBehaviour
+    public class MonoBehaviourScriptSample : StartupScript, IMonoBehaviour
     {
         #region Stride StartupScript
         public override void Start()
