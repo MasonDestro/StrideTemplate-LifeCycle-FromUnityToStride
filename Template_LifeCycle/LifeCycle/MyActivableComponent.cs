@@ -4,6 +4,7 @@ using Stride.Engine.Design;
 
 namespace Template_LifeCycle.LifeCycle
 {
+    [AllowMultipleComponents]
     [DataContract(nameof(MyActivableComponent))]
     [DefaultEntityComponentProcessor(typeof(MyActivableComponentProcessor), ExecutionMode = ExecutionMode.Runtime)]
     public class MyActivableComponent : ActivableEntityComponent

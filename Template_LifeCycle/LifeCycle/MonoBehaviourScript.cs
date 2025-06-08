@@ -3,6 +3,7 @@ using Stride.Games;
 
 namespace Template_LifeCycle.LifeCycle
 {
+    [AllowMultipleComponents]
     public class MonoBehaviourScript : StartupScript, IMonoBehaviour
     {
         #region Stride StartupScript

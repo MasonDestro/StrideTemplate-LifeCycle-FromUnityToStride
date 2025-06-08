@@ -12,7 +12,8 @@ namespace Template_LifeCycle.LifeCycle
         [DefaultValue(true)]
         public virtual bool Enabled { get; set; } = true;
 
-        List<Entity> enttList;
+        Entity entt;
+        List<MonoBehaviourScript> comList;
 
         public override void Start()
         {
@@ -22,7 +23,10 @@ namespace Template_LifeCycle.LifeCycle
             Log.Verbose("Test Flexible Processing");
 
 
-            enttList = new();
+            entt = new();
+            //SceneSystem.SceneInstance.RootScene.Entities.Add(entt);
+            Entity.Scene.Entities.Add(entt);    //  Alternative add entity
+            comList = new();
         }
 
         public override void Update()
@@ -40,22 +44,25 @@ namespace Template_LifeCycle.LifeCycle
                     //  add enabled component
                     //  Awake() -> OnEnable() -> Start()
 
-                    enttList.Add(new Entity());
-                    SceneSystem.SceneInstance.RootScene.Entities.Add(enttList[^1]);
-                    MonoBehaviourScript com = new();
-                    enttList[^1].Add(com);
-                    com.IsEnableChanged = true;
+                    MonoBehaviourScript com = new()
+                    {
+                        IsEnableChanged = true
+                    };
+                    entt.Add(com);
+                    comList.Add(com);
 
                     /*/
 
                     //  add disabled component
                     //  Awake() -> OnEnable() -> OnDisable()
 
-                    enttList.Add(new Entity());
-                    Entity.Scene.Entities.Add(enttList[^1]);    //  Alternative add entity
-                    var com = enttList[^1].GetOrCreate<MonoBehaviourScript>();
-                    com.Enabled = false;
-                    com.IsDisabledOnAwake = true;
+                    MonoBehaviourScript com = new()
+                    {
+                        Enabled = false,
+                        IsDisabledOnAwake = true
+                    };
+                    entt.Add(com);
+                    comList.Add(com);
 
                     //*/
                 }
@@ -63,20 +70,18 @@ namespace Template_LifeCycle.LifeCycle
                 {
                     //  OnDestroy()
                     //  OnDisable() if component.Enabled == true
-                    if (enttList.Count > 0)
+                    if (comList.Count > 0)
                     {
-                        SceneSystem.SceneInstance.RootScene.Entities.Remove(enttList[^1]);
-                        //Entity.Scene.Entities.Remove(enttList[^1]);     //  Alternative remove entity
-                        enttList.RemoveAt(enttList.Count - 1);
+                        entt.Remove(comList[^1]);
+                        comList.RemoveAt(comList.Count - 1);
                     }
                 }
                 if (Input.IsKeyReleased(Keys.E))
                 {
                     //  OnEnable() or OnDisable()
                     //  Start() if OnEnable() first time
-                    foreach (Entity entt in enttList)
+                    foreach (var com in comList)
                     {
-                        var com = entt.Get<MonoBehaviourScript>();
                         com.Enabled = !com.Enabled;
                         com.IsEnableChanged = true;
                     }
