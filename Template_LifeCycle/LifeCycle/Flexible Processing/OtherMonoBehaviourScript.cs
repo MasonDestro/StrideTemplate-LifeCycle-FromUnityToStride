@@ -2,7 +2,7 @@
 
 namespace Template_LifeCycle.LifeCycle
 {
-    public class OtherMonoBehaviourScript : MonoBehaviourScriptSample
+    public class OtherMonoBehaviourScript : MonoBehaviour
     {
         protected override void Awake()
         {

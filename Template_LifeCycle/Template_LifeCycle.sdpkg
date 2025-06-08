@@ -11,6 +11,7 @@ AssetFolders:
     -   Path: !dir Effects
     -   Path: !dir ../../Template_LifeCycle/Template_LifeCycle/Assets
     -   Path: !dir Assets
+    -   Path: !dir Assets
     -   Path: !dir E:/Projects/GitHub Repositories/StrideTemplate-SimulateMonoBehaviourLifeCycle/Template_LifeCycle/Assets
 ResourceFolders:
     - !dir Resources
