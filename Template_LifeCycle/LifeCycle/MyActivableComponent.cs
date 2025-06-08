@@ -5,7 +5,7 @@ using Stride.Engine.Design;
 namespace Template_LifeCycle.LifeCycle
 {
     [DataContract(nameof(MyActivableComponent))]
-    [DefaultEntityComponentProcessor(typeof(MyActivableComponentProcessor))]
+    [DefaultEntityComponentProcessor(typeof(MyActivableComponentProcessor), ExecutionMode = ExecutionMode.Runtime)]
     public class MyActivableComponent : ActivableEntityComponent
     {
         #region Helper States of Unity MonoBehaviour style Life Cycle
