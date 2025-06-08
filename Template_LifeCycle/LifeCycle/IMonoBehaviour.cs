@@ -8,8 +8,11 @@ namespace Template_LifeCycle.LifeCycle
 {
     public interface IMonoBehaviour : IComponent<IMonoBehaviour.Processor, IMonoBehaviour>
     {
+        [DataMemberIgnore]
         bool IsDisabledOnAwake { get; set; }
+        [DataMemberIgnore]
         bool IsEnableChanged { get; set; }
+        [DataMemberIgnore]
         bool IsStart { get; set; }
 
 

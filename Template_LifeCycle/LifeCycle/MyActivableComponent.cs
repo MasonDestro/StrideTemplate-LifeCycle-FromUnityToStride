@@ -11,8 +11,11 @@ namespace Template_LifeCycle.LifeCycle
     {
         #region Helper States of Unity MonoBehaviour style Life Cycle
 
+        [DataMemberIgnore]
         public bool IsDisabledOnAwake;
+        [DataMemberIgnore]
         public bool IsStart;
+        [DataMemberIgnore]
         public bool IsEnableChanged;
 
         #endregion
