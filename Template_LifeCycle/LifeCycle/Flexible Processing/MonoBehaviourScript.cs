@@ -1,7 +1,9 @@
-﻿using Stride.Games;
+﻿using Stride.Engine;
+using Stride.Games;
 
 namespace Template_LifeCycle.LifeCycle
 {
+    [AllowMultipleComponents]
     public class MonoBehaviourScript : MonoBehaviour
     {
         protected override void Awake()

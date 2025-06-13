@@ -6,7 +6,6 @@ namespace Template_LifeCycle.LifeCycle
 {
     [DataContract("MonoBehaviour", Inherited = true)]
     [ComponentCategory("MonoBehaviour")]
-    [AllowMultipleComponents]
     public abstract class MonoBehaviour : EntityComponent, IMonoBehaviour
     {
         #region Helper States of Unity MonoBehaviour style Life Cycle
